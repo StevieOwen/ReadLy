@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer base {
+  /* 2. Map the fonts to your custom utility classes */
+  .font-display {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  .font-body {
+    font-family: "DM Sans", sans-serif;
+  }
+  
+  /* 3. Optional: Set 'DM Sans' as the default font for the entire app */
+ 
+}
+
+@layer components{
+    .book-spine{
+        @apply [writing-mode:vertical-rl] [text-orientation:mixed] rotate-180;
+    }
+    .book-type{
+        @apply w-[60px] h-[40px] bg-[#fff] rounded-[10px] text-[#635A4D] text-center flex items-center justify-center text-[clamp(0.7rem,2vw,1rem)];
+    }
+
+    .h2-title{
+      @apply font-display text-[#0e0d0a] text-[clamp(2rem,3vw,2.5rem)] font-display font-black leading-[1.05]  mb-6 opacity-90 animate-fade-up-delay-1;
+    }
+
+}
+
+@layer utilities {
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
