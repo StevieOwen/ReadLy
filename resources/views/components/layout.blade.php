@@ -34,11 +34,11 @@
             <div class="hidden md:block md:w-[17%]">
                 <ul class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between">
                     <li class="text-[#4A4339] max-md:border max-md:border-[#D0CABC] text-center p-2 rounded-[10px] transition-bg duration-[1000ms] hover:bg-[#e8e5de] px-3">
-                      <a href="">Sign In</a>
+                      <a href="/login">Sign In</a>
                     </li>
                       
                     <li class="text-center  bg-gradient-to-br from-[#059669] to-[#10b981] font-semibold p-2 rounded-[10px] text-[#fff] shadow-[0_4px_14px_rgba(16,185,129,0.35)] md:px-5 transition-transform duration-[1000ms] hover:-translate-y-2">
-                     <a href="">Get Started</a>
+                     <a href="/registration">Get Started</a>
                     </li>
                 </ul>
             </div>
