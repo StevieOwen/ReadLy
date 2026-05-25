@@ -16,14 +16,20 @@
             <h2 class="font-bold font-black font-display text-[clamp(1.3rem,3vw,1.8rem)]">ReadLy</h2>
         </div>
 
+            {{-- burger menu icon --}}
         <div class="md:hidden absolute top-3 right-4">
-            <svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+            <svg id="burger-menu-icon" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                 <path d='M4.5 6.5h15M4.5 12h15m-15 5.5h15'/>
             </svg>
         </div>
-
+            {{-- close btn --}}
+        <div id="close-cont" class="hidden  md:hidden absolute top-3 right-4">
+            <svg id="close-icon" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+            <path d='M18 6 6 18M6 6l12 12'/>
+            </svg>
+        </div>
         
-            <div class="hidden max-md:border-b max-md:border-[#E8E5DE] pb-2  md:block md:w-[25%]">
+            <div id="menu" class="hidden max-md:border-b max-md:border-[#E8E5DE] pb-2  md:block md:w-[25%]">
                 <ul class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between">
                     <li class="underline decoration-transparent transition-colors duration-[1000ms] hover:decoration-current"> <a href="">Explore</a></li>
                     <li class="underline decoration-transparent transition-colors duration-[1000ms] hover:decoration-current"><a href="">Community</a></li>
@@ -31,7 +37,7 @@
                 </ul>
             </div>
 
-            <div class="hidden md:block md:w-[17%]">
+            <div id="menu-1" class="hidden md:block md:w-[17%]">
                 <ul class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:justify-between">
                     <li class="text-[#4A4339] max-md:border max-md:border-[#D0CABC] text-center p-2 rounded-[10px] transition-bg duration-[1000ms] hover:bg-[#e8e5de] px-3">
                       <a href="/login">Sign In</a>
@@ -52,5 +58,5 @@
         <p>Developped by Stevie Owen</p>
    </footer>
 </body>
-
+@vite('resources/js/welcome.js')
 </html>

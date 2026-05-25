@@ -37,6 +37,13 @@
       @apply bg-[#0e0d0a] bg-[radial-gradient(ellipse_70%_50%_at_30%_30%,rgba(16,185,129,0.18)_0%,transparent_60%),radial-gradient(ellipse_50%_40%_at_80%_70%,rgba(99,91,77,0.15)_0%,transparent_55%)] min-h-screen w-[30%];
     }
 
+    .active-link{
+      @apply bg-[#0e0d0a] text-white py-2 px-4 rounded-[10px];
+    }
+    .active-filter{
+      @apply bg-[#0e0d0a] text-white;
+    }
+
 }
 
 @layer utilities {

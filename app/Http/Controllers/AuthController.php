@@ -17,4 +17,8 @@ class AuthController extends Controller
     function renderRegistration(){
         return view('Auth/registration');
     }
+
+    function renderDashboard(){
+        return view('users/dashboard');
+    }
 }
