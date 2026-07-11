@@ -6,6 +6,7 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,6 +32,9 @@ class AppServiceProvider extends ServiceProvider
         // Route::bind('id', function ($value) {
         // return User::where('user_id', $value)->firstOrFail();
         // });
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
 
     }
 }
