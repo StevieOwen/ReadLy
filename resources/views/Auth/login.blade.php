@@ -21,6 +21,15 @@
 
 
 <main class="bg-[#F8F6F1] w-full md:w-[70%]">
+    {{-- go back home --}}
+    <div class="hidden md:block relative z-10">
+        <a href="/">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d='M16.5 12h-9m3.5 3.5L7.5 12 11 8.5'/>
+            <path d='M3 9.4c0-2.24 0-3.36.436-4.216a4 4 0 0 1 1.748-1.748C6.04 3 7.16 3 9.4 3h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C21 6.04 21 7.16 21 9.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C17.96 21 16.84 21 14.6 21H9.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C3 17.96 3 16.84 3 14.6z'/>
+            </svg>
+        </a>
+    </div>
+
     {{-- header mobile-phone --}}
     <div class="w-full  md:hidden flex justify-between p-4 items-center border-b border-[#b5ac99]">
         <h2>READLY</h2>
@@ -66,19 +75,27 @@
 
 
         {{-- login form --}}
-        <form id="login-form" class="relative z-10 py-3 flex flex-col space-y-3 md:w-[65%]" action="">
-
+        <form id="login-form" class="relative z-10 py-3 flex flex-col space-y-3 md:w-[65%]" action="{{ route('login') }}" method="POST">
+        @csrf
             {{-- email --}}
             <div class="flex flex-col space-y-2">
                 <label for="email">Email</label>
-                <input class="bg-[#f4f3f0] p-1 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="text" name="email" id="email" placeholder="">
+                <input class="@error('email') is-invalid @enderror bg-[#f4f3f0] p-1 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="text" name="email" id="email" value="{{ old('email') }}" placeholder="john@gmail.com" required>
+                @error('email')
+                    <span class="text-[#D51C39]">{{ $message }}</span>
+                @enderror
             </div>
 
             {{-- password --}}
             <div class="flex flex-col space-y-2">
-                <label for="passsword">Password</label>
+                <div class="flex justify-between items-center">
+                    <label for="passsword">Password</label>
+
+                    <a class="text-[clamp(0.6rem,2vw,0.7rem)]" href="/forgot-password">Forgot Password?</a>
+                </div>
+                
                 <div class="relative">
-                    <input class="block relative w-full bg-[#f4f3f0] p-1 pr-10 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="password" name="password" id="password" placeholder="">
+                    <input class="block relative w-full bg-[#f4f3f0] p-1 pr-10 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="password" name="password" id="password" placeholder="" required>
                     
                     <button type="button" id="hide-pwd" class="absolute z-10 right-1 top-1/2 -translate-y-1/2 cursor-pointer text-[#1c1a15]/70 hover:text-[#1c1a15]">
                         <svg  width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -95,6 +112,16 @@
                 </div>
                 
             </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class=text-[#D51C39]>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             {{-- submit buttons    --}}
             <div class="flex justify-center pt-3">

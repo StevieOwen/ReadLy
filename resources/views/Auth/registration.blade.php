@@ -65,6 +65,14 @@
 
 
 <main class="w-full bg-[#F8F6F1] md:w-[70%] ">
+    {{-- go back home --}}
+    <div class="hidden md:block relative z-10">
+        <a href="/">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d='M16.5 12h-9m3.5 3.5L7.5 12 11 8.5'/>
+            <path d='M3 9.4c0-2.24 0-3.36.436-4.216a4 4 0 0 1 1.748-1.748C6.04 3 7.16 3 9.4 3h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C21 6.04 21 7.16 21 9.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C17.96 21 16.84 21 14.6 21H9.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C3 17.96 3 16.84 3 14.6z'/>
+            </svg>
+        </a>
+    </div>
     
     {{-- header mobile-phone --}}
     <div class="w-full  md:hidden flex justify-between p-4 items-center border-b border-[#b5ac99]">
@@ -109,35 +117,58 @@
             <div class="w-[150px] h-[2px] bg-[#7d7261]"></div>
         </div>
 
+        {{-- display error --}}
+        @if ($errors->any())
+            <div class="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 animate-fade-in">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-semibold text-red-800">Please correct the following errors:</h3>
+                        <ul class="mt-2 list-disc pl-5 text-xs space-y-1 text-red-700">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        @endif
+
          {{-- registration form --}}
-        <form id="registration-form" class="relative z-10 py-3 flex flex-col space-y-3 md:w-[65%]" action="">
+        <form id="registration-form" class="relative z-10 py-3 flex flex-col space-y-3 md:w-[65%]" action="{{ route('register') }}" method="POST">
+           @csrf
+
             {{-- first and last name container --}}
             <div class="flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-9">
 
                 {{-- first name --}}
                 <div class="flex flex-col space-y-2">
                     <label for="firstName">First Name</label>
-                    <input class="bg-[#f4f3f0] p-1 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="text" name="firstName" id="firstName" placeholder="">
+                    <input class="bg-[#f4f3f0] p-1 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="text" name="firstName" id="firstName" value="{{ old('firstName') }}" placeholder="John">
                 </div>
 
                 {{-- last name --}}
                 <div class="flex flex-col space-y-2">
                     <label for="lastName">Last Name</label>
-                    <input class="bg-[#f4f3f0] p-1 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="text" name="lastName" id="lastName" placeholder="">
+                    <input class="bg-[#f4f3f0] p-1 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="text" name="lastName" id="lastName" value="{{ old('lastName') }}" placeholder="Doe">
                 </div>
             </div>
 
             {{-- email --}}
             <div class="flex flex-col space-y-2">
                 <label for="email">Email</label>
-                <input class="bg-[#f4f3f0] p-1 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="text" name="email" id="email" placeholder="">
+                <input class="bg-[#f4f3f0] p-1 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="text" name="email" id="email" value="{{ old('email') }}" placeholder="john@gmail.com">
             </div>
 
             {{-- password --}}
             <div class="flex flex-col space-y-2">
-                <label for="passsword">Password</label>
+                <label for="password">Password</label>
                 <div class="relative">
-                    <input class="block relative w-full bg-[#f4f3f0] p-1 pr-10 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="password" name="password" id="password" placeholder="">
+                    <input class="block relative w-full bg-[#f4f3f0] p-1 pr-10 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="password" name="password" value="{{ old('password') }}" id="password" placeholder="">
                     
                     <button type="button" id="hide-pwd" class="absolute z-10 right-1 top-1/2 -translate-y-1/2 cursor-pointer text-[#1c1a15]/70 hover:text-[#1c1a15]">
                         <svg  width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -157,8 +188,8 @@
 
             {{-- password confirmation--}}
             <div class="flex flex-col space-y-2">
-                <label for="passswordConf">Confirm Password</label>
-                <input class="bg-[#f4f3f0] p-1 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="password" name="passswordConf" id="passswordConf" placeholder="">
+                <label for="passwordConf">Confirm Password</label>
+                <input class="bg-[#f4f3f0] p-1 rounded-[8px] border border-[#e8e5de] text-[#1c1a15]" type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" id="passwordConf" placeholder="">
             </div>
 
                 {{-- Favorites genres --}}
@@ -168,7 +199,7 @@
                 <div class="flex space-x-4  space-y-3 flex-wrap text-[clamp(0.6rem,2vw,0.8rem)]">
                     
                     <label for="fiction">
-                        <input type="checkbox" id="fiction" name="genre" value="Fiction" class="sr-only peer" >
+                        <input type="checkbox" id="fiction" name="genre[]" value="1" class="sr-only peer" >
                         <div class="px-5 py-2 rounded-full border border-[#e3ded5] bg-[#fff] text-[#0e0d0a] font-medium transition-all
                             peer-checked:bg-[#10b981] peer-checked:text-[#fff] peer-checked:border-[#5c5647]
                             hover:border-[#5c5647]/50">
@@ -178,7 +209,7 @@
                     </label>
 
                     <label for="fantasy">
-                        <input type="checkbox" id="fantasy" name="genre" value="Fantasy" class="sr-only peer" >
+                        <input type="checkbox" id="fantasy" name="genre[]" value="2" class="sr-only peer" >
                         <div class="px-5 py-2 rounded-full border border-[#e3ded5] bg-[#fff] text-[#0e0d0a] font-medium transition-all
                             peer-checked:bg-[#10b981] peer-checked:text-[#fff] peer-checked:border-[#5c5647]
                             hover:border-[#5c5647]/50">
@@ -188,7 +219,7 @@
                     </label>
 
                     <label for="science">
-                        <input type="checkbox" id="science" name="genre" value="Science" class="sr-only peer" >
+                        <input type="checkbox" id="science" name="genre[]" value="3" class="sr-only peer" >
                         <div class="px-5 py-2 rounded-full border border-[#e3ded5] bg-[#fff] text-[#0e0d0a] font-medium transition-all
                             peer-checked:bg-[#10b981] peer-checked:text-[#fff] peer-checked:border-[#5c5647]
                             hover:border-[#5c5647]/50">
@@ -198,7 +229,7 @@
                     </label>
 
                     <label for="history">
-                        <input type="checkbox" id="history" name="genre" value="History" class="sr-only peer" >
+                        <input type="checkbox" id="history" name="genre[]" value="4" class="sr-only peer" >
                         <div class="px-5 py-2 rounded-full border border-[#e3ded5] bg-[#fff] text-[#0e0d0a] font-medium transition-all
                             peer-checked:bg-[#10b981] peer-checked:text-[#fff] peer-checked:border-[#5c5647]
                             hover:border-[#5c5647]/50">
@@ -208,7 +239,7 @@
                     </label>
                        
                     <label for="romance">
-                        <input type="checkbox" id="romance" name="genre" value="Romance" class="sr-only peer">
+                        <input type="checkbox" id="romance" name="genre[]" value="5" class="sr-only peer">
                         <div class="px-5 py-2 rounded-full border border-[#e3ded5] bg-[#fff] text-[#0e0d0a] font-medium transition-all
                             peer-checked:bg-[#10b981] peer-checked:text-[#fff] peer-checked:border-[#5c5647]
                             hover:border-[#5c5647]/50">
@@ -218,7 +249,7 @@
                     </label>   
                     
                     <label for="philosophy">
-                        <input type="checkbox" id="philosophy" name="genre" value="Philosophy" class="sr-only peer">
+                        <input type="checkbox" id="philosophy" name="genre[]" value="6" class="sr-only peer">
                         <div class="px-5 py-2 rounded-full border border-[#e3ded5] bg-[#fff] text-[#0e0d0a] font-medium transition-all
                             peer-checked:bg-[#10b981] peer-checked:text-[#fff] peer-checked:border-[#5c5647]
                             hover:border-[#5c5647]/50">
@@ -228,7 +259,7 @@
                     </label>
 
                     <label for="politic">
-                        <input type="checkbox" id="politic" name="genre" value="Politic" class="sr-only peer" >
+                        <input type="checkbox" id="politic" name="genre[]" value="7" class="sr-only peer" >
                         <div class="px-5 py-2 rounded-full border border-[#e3ded5] bg-[#fff] text-[#0e0d0a] font-medium transition-all
                             peer-checked:bg-[#10b981] peer-checked:text-[#fff] peer-checked:border-[#5c5647]
                             hover:border-[#5c5647]/50">
@@ -238,7 +269,7 @@
                     </label>
 
                     <label for="other">
-                        <input type="checkbox" id="other" name="genre" value="Other" class="sr-only peer" >
+                        <input type="checkbox" id="other" name="genre[]" value="8" class="sr-only peer" >
                         <div class="px-5 py-2 rounded-full border border-[#e3ded5] bg-[#fff] text-[#0e0d0a] font-medium transition-all
                             peer-checked:bg-[#10b981] peer-checked:text-[#fff] peer-checked:border-[#5c5647]
                             hover:border-[#5c5647]/50">
@@ -250,10 +281,10 @@
                 </div>
             </div>
                 {{-- agree with terms and conditions --}}
-            <div>
+            {{-- <div>
                 <input type="checkbox" id="term" value="agree" name="terms">
                 <label text-[clamp(0.6rem,2vw,0.8rem)] for="term">I agree to the  <a class="text-[#10b981]" href="">Terms of Service</a> and  <a class="text-[#10b981]" href="">Privacy Policy. </a>  </label>
-            </div>
+            </div> --}}
 
              {{-- submit buttons    --}}
             <div class="flex justify-center pt-3">

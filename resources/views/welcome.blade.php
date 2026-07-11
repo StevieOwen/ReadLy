@@ -17,7 +17,7 @@
                 <p class="text-[#7D7261]">Upload any book in PDF, EPUB, or MOBI. Instantly join <br> live discussions with readers worldwide. Reading is <br> better together.</p>
 
                 <div class="mt-8 flex flex-col space-y-3 space-x-0 md:flex-row md:space-y-0  md:space-x-2">
-                    <a class="bg-[#059669] text-white rounded-[10px] py-3 px-4 flex space-x-1 items-center transition-transform duration-[1000ms] hover:-translate-y-2" href="" >
+                    <a class="bg-[#059669] text-white rounded-[10px] py-3 px-4 flex space-x-1 items-center transition-transform duration-[1000ms] hover:-translate-y-2" href="/login" >
                         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                         <path d='M4 16.004V17a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1m-8-.5v-11M15.5 8 12 4.5 8.5 8'/>
                         </svg> 
