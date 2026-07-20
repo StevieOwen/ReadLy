@@ -43,7 +43,7 @@
     .active-filter{
       @apply bg-[#0e0d0a] text-white;
     }
-
+    
 }
 
 @layer utilities {

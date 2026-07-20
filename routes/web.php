@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,6 +20,12 @@ Route::get('/reset-password/{token}', [AuthController::class, "renderResetPasswo
 Route::get('/', [AuthController::class,"renderWelcome"]);
 
 Route::get('/dashboard', [AuthController::class,"renderDashboard"])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/discover', [UserController::class,"renderDiscovery"])->middleware(['auth', 'verified'])->name('discovery');
+Route::get('/bookClub', [UserController::class,"renderBookClub"])->middleware(['auth', 'verified'])->name('bookClub');
+Route::get('/readingStats', [UserController::class,"renderReadingStats"])->middleware(['auth', 'verified'])->name('readingStats');
+Route::get('/settings', [UserController::class,"renderSettings"])->middleware(['auth', 'verified'])->name('settings');
+Route::get('/help', [UserController::class,"renderHelp"])->middleware(['auth', 'verified'])->name('help');
+
 Route::get('/reader/{id}',[BookController::class,"renderReader"])->middleware(['auth', 'verified'])->name('book.reader');
 Route::post('/store',[BookController::class,"store"])->middleware(['auth', 'verified']);
 

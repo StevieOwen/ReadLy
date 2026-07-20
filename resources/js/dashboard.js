@@ -64,5 +64,3 @@ cancel.addEventListener('click',(e)=>{
   e.preventDefault();  
   modal_book_upload.classList.add('hidden');
 })
-
-

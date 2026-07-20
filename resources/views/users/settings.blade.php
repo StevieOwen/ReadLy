@@ -1,0 +1,3 @@
+<x-dashboardLayout>
+
+</x-dashboardLayout>
