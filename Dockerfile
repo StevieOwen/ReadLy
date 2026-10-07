@@ -21,18 +21,19 @@ RUN npm run build
 # ==========================================
 FROM php:8.4-apache AS runtime
 
-# Install system dependencies and required PHP extensions for Laravel & MySQL
+# Install system dependencies and required PHP extensions for Laravel, MySQL, & PostgreSQL
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
     libzip-dev \
+    libpq-dev \
     zip \
     unzip \
     git \
     curl \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo_mysql gd zip bcmath opcache \
+    && docker-php-ext-install pdo_mysql pdo_pgsql pgsql gd zip bcmath opcache \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache mod_rewrite for Laravel routing
