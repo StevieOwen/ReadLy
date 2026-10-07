@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ChatController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -33,6 +34,10 @@ Route::post('/store',[BookController::class,"store"])->middleware(['auth', 'veri
 Route::get('/email/verify', [AuthController::class, "verify_email"])
     ->middleware('auth')
     ->name('verification.notice');
+Route::middleware(['auth', 'verified'])->group(function () {
+    // Add this route definition:
+    Route::get('/chat/{user}', [ChatController::class, 'show'])->name('chat.show');
+});
 
 
 Route::get('/email/verify/{id}/{hash}', function (Request $request, $id, $hash) {
